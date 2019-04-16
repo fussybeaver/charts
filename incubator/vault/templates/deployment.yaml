@@ -38,7 +38,7 @@ spec:
         image: "{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         {{- if .Values.vault.dev }}
-        command: ["vault", "server", "-dev", "-dev-listen-address", "[::]:8200"]
+        command: ["vault", "server", "-dev", "-dev-listen-address", "[::]:8200", "-config", "/vault/config/config.json"]
         {{- else }}
         command: ["vault", "server", "-config", "/vault/config/config.json"]
         {{- end }}
